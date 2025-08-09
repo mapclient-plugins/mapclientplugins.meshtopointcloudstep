@@ -1,0 +1,6 @@
+
+<RCC>
+  <qresource prefix="meshtopointcloudstep">
+    <file>images/segmentation.png</file>
+  </qresource>
+</RCC>

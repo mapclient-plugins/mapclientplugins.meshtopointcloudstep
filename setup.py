@@ -31,7 +31,7 @@ def readfile(filename, split=False):
 
 readme = readfile("README.rst", split=True)[3:]  # Skip title
 source_license = readfile("LICENSE")
-requires = ['PySide6', "cmlibs.widgets >= 0.9", "cmlibs.zinc", "cmlibs.utils",]
+requires = ['PySide6', "cmlibs.widgets >= 0.9", "cmlibs.zinc", "cmlibs.utils >= 0.13",]
 
 
 setup(

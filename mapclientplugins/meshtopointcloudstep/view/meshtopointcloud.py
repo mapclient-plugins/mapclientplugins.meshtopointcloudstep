@@ -7,7 +7,6 @@ import os
 import json
 import webbrowser
 
-import numpy as np
 from PySide6 import QtWidgets, QtCore
 
 from cmlibs.utils.zinc.finiteelement import is_field_defined_for_nodeset
@@ -60,7 +59,7 @@ def _get_coordinate_fields(region):
 
 
 def _documentation_clicked():
-    webbrowser.open("https://abi-mapping-tools.readthedocs.io/en/latest/mapclientplugins.meshtopointcloud/docs/index.html")
+    webbrowser.open("https://abi-mapping-tools.readthedocs.io/en/latest/mapclientplugins.meshtopointcloudstep/docs/index.html")
 
 
 class MeshToPointCloudWidget(QtWidgets.QMainWindow):

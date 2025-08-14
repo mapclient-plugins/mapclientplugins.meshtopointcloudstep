@@ -142,7 +142,7 @@ class MeshToPointCloudWidget(QtWidgets.QMainWindow):
         self._location = location
 
     def get_output_file(self):
-        return self._model.output_point_cloud_filename()
+        return os.path.join(self._location, self._model.output_point_cloud_filename())
 
     def register_done_execution(self, done_execution):
         self._callback = done_execution

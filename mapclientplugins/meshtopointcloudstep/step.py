@@ -42,7 +42,6 @@ class MeshToPointCloudStep(WorkflowStepMountPoint):
                       ])
         # Port data:
         self._input_mesh_file = None
-        self._output_mesh_file = None
         # Config:
         self._config = {
             'identifier': '',
@@ -90,7 +89,7 @@ class MeshToPointCloudStep(WorkflowStepMountPoint):
 
         :param index: Index of the port to return.
         """
-        return self._output_mesh_file  # file_location
+        return self._view.get_output_file()
 
     def configure(self):
         """

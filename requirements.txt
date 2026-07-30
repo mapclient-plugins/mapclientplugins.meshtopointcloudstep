@@ -1,0 +1,4 @@
+PySide6
+cmlibs.widgets>=0.9
+cmlibs.zinc
+cmlibs.utils>=0.14

@@ -22,9 +22,10 @@ class ConfigureDialog(QtWidgets.QDialog):
         # and know how many occurrences of the current identifier there should
         # be.
         self._previousIdentifier = ''
-        # Set a place holder for a callable that will get set from the step.
+        # Set a placeholder for a callable that will get set from the step.
         # We will use this method to decide whether the identifier is unique.
         self.identifierOccursCount = None
+        self._input_sha = ""
 
         self._makeConnections()
 
@@ -70,8 +71,7 @@ class ConfigureDialog(QtWidgets.QDialog):
         identifier over the whole of the workflow.
         """
         self._previousIdentifier = self._ui.lineEdit0.text()
-        config = {}
-        config['identifier'] = self._ui.lineEdit0.text()
+        config = {'identifier': self._ui.lineEdit0.text(), "input_sha": self._input_sha}
         return config
 
     def setConfig(self, config):
@@ -81,5 +81,6 @@ class ConfigureDialog(QtWidgets.QDialog):
         identifier over the whole of the workflow.
         """
         self._previousIdentifier = config['identifier']
+        self._input_sha = config['input_sha']
         self._ui.lineEdit0.setText(config['identifier'])
 

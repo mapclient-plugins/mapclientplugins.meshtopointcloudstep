@@ -24,10 +24,16 @@ class MeshToPointCloud(object):
         self._root_region = self._context.getDefaultRegion()
 
         self._mesh_region = self._root_region.createChild("mesh")
-        self._output_point_cloud = self._root_region.createChild("point_cloud")
 
         self.define_standard_materials()
         self.define_standard_glyphs()
+
+    def clear(self):
+        self._mesh = None
+        self._mesh_coordinates_field = None
+        self._mesh_file_location = None
+        self._root_region.removeChild(self._mesh_region)
+        self._mesh_region = self._root_region.createChild("mesh")
 
     def load(self, mesh_file_location, mesh_coordinates_name=None):
         fm = self._mesh_region.getFieldmodule()

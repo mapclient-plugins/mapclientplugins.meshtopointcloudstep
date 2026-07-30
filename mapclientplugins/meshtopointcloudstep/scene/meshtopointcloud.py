@@ -32,6 +32,11 @@ class MeshToPointCloudScene(object):
         self._pixel_scale = 1
         self._data_point_base_size = 0.15
 
+    def clear(self):
+        self._surface_graphics = None
+        self._surface_material = None
+        self._node_graphics = None
+
     def setup_visualisation(self):
         if self._node_graphics is None:
             mesh_region = self._model.get_mesh_region()

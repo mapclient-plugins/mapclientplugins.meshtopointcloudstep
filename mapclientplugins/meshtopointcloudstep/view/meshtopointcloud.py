@@ -126,11 +126,16 @@ class MeshToPointCloudWidget(QtWidgets.QMainWindow):
         self.addDockWidget(QtCore.Qt.DockWidgetArea.LeftDockWidgetArea, self._dock_widget)
 
     def load(self, mesh_file_location):
+        self._identifier_label.setText(f"Identifier: {self._model.get_identifier()}")
+
+        # Clear all the old state.
+        self._scene.clear()
+        self._model.clear()
+
         self._scene.setup_visualisation()
         self._scene.create_mesh_surface()
         self._load_settings()
 
-        self._identifier_label.setText(f"Identifier: {self._model.get_identifier()}")
         self._model.load(mesh_file_location)
 
         self._coordinate_field_list = _get_coordinate_fields(self._model.get_mesh_region())

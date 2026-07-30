@@ -1,4 +1,3 @@
-
 """
 MAP Client Plugin Step
 """
@@ -7,7 +6,10 @@ import os
 
 from PySide6 import QtGui
 
+from cmlibs.utils.misc import sha256sum
+
 from mapclient.mountpoints.workflowstep import WorkflowStepMountPoint
+
 from mapclientplugins.meshtopointcloudstep.configuredialog import ConfigureDialog
 from mapclientplugins.meshtopointcloudstep.model.meshtopointcloud import MeshToPointCloud
 from mapclientplugins.meshtopointcloudstep.view.meshtopointcloud import MeshToPointCloudWidget
@@ -45,6 +47,7 @@ class MeshToPointCloudStep(WorkflowStepMountPoint):
         # Config:
         self._config = {
             'identifier': '',
+            'input_sha': '',
         }
 
         self._view = None
@@ -56,15 +59,20 @@ class MeshToPointCloudStep(WorkflowStepMountPoint):
         Make sure you call the _doneExecution() method when finished.  This method
         may be connected up to a button in a widget for example.
         """
-        # Put your execute step code here before calling the '_doneExecution' method.
-        if self._view is None:
+        init = self._view is None
+        if init:
             self._model = MeshToPointCloud()
             self._view = MeshToPointCloudWidget(self._model)
             self._view.register_done_execution(self._doneExecution)
 
         self._model.set_identifier(self._config['identifier'])
         self._view.set_location(self._output_location())
-        self._view.load(self._input_mesh_file)
+
+        sha256 = sha256sum(self._input_mesh_file)
+        if init or self._config['input_sha'] != sha256:
+            self._view.load(self._input_mesh_file)
+            self._config['input_sha'] = sha256
+
         self._setCurrentWidget(self._view)
 
     def _output_location(self):

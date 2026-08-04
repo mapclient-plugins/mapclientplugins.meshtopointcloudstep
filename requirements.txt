@@ -2,4 +2,4 @@ PySide6
 cmlibs.maths
 cmlibs.widgets>=0.9
 cmlibs.zinc
-cmlibs.utils>=0.14
+cmlibs.utils>=0.15
